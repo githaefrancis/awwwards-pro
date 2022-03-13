@@ -12,6 +12,23 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import django_heroku
+import dj_database_url
+from decouple import config,Csv
+
+
+cloudinary.config(
+
+    cloud_name=config('cloud_name'),
+    api_key=config('cloudinary_api_key'),
+    api_secret=config('cloudinary_secret')
+)
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +37,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4dq)ppk%yu1dl5d-h7!gw(uxl@fltdenfd7(3hk%r!kz3^(y#f'
+SECRET_KEY=config("SECRET_KEY")
+ALLOWED_HOSTS = config('ALLOWED_HOSTS',cast=Csv())
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'projects',
     'django_bootstrap5',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'awwwards_pro.urls'
@@ -75,12 +96,39 @@ WSGI_APPLICATION = 'awwwards_pro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+MODE=config("MODE",default="dev")
+
+if config('MODE')=="dev":
+    DATABASES={
+
+        'default':{
+            'ENGINE':'django.db.backends.postgresql',
+            'NAME':config('DB_NAME'),
+            'USER':config('DB_USER'),
+            'PASSWORD':config('DB_PASSWORD'),
+            'HOST':config('DB_HOST'),
+            'PORT':'',
+
+        }
+
     }
-}
+else:
+    DATABASES={
+        'default':dj_database_url.config(
+            default=config('DATABASE_URL')
+        )
+    }
+
+db_from_env=dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
 
 
 # Password validation
@@ -107,7 +155,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
+
 
 USE_I18N = True
 
@@ -126,3 +175,5 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,"static")]
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+django_heroku.settings(locals())
