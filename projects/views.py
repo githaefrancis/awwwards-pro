@@ -13,7 +13,7 @@ def new_project(request):
     if form.is_valid():
       new_project=form.save(commit=False)
       new_project.user=current_user
-      new_project.save()
+      new_project.save_project()
 
       return redirect('home')
   

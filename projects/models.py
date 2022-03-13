@@ -12,6 +12,9 @@ class UserProfile(models.Model):
   profile_photo=CloudinaryField('image')
   created_at=models.DateTimeField(auto_now_add=True)
 
+  def save_profile(self):
+    self.save()
+
 
 class Project(models.Model):
   user=models.ForeignKey(User,related_name='project',on_delete=models.CASCADE)
@@ -21,6 +24,8 @@ class Project(models.Model):
   image=CloudinaryField('image')
   created_at=models.DateTimeField(auto_now_add=True)
 
+  def save_project(self):
+    self.save()
 class Rating(models.Model):
   user=models.ForeignKey(User,related_name='rating',on_delete=models.CASCADE)
   project=models.ForeignKey(Project,related_name='rating',on_delete=models.CASCADE)
@@ -28,3 +33,6 @@ class Rating(models.Model):
   usability_rating=models.IntegerField()
   content_rating=models.IntegerField()
   created_at=models.DateTimeField(auto_now_add=True)
+
+  def save_rating(self):
+    self.save()
