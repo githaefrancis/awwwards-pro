@@ -14,6 +14,7 @@ class UserProfile(models.Model):
 
 
 class Project(models.Model):
+  user=models.ForeignKey(User,related_name='project',on_delete=models.CASCADE)
   title=models.CharField(max_length=100)
   description=models.CharField(max_length=500)
   url=models.CharField(max_length=500)
@@ -26,3 +27,4 @@ class Rating(models.Model):
   design_rating=models.IntegerField()
   usability_rating=models.IntegerField()
   content_rating=models.IntegerField()
+  created_at=models.DateTimeField(auto_now_add=True)
