@@ -1,0 +1,4 @@
+header,header .container{
+  min-height: 80vh;
+  background: red;
+}
