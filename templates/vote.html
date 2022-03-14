@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="" class="mt-2">
+  <div>
+    <br>
+
+    <p>Rate Design</p>
+  {% for choice in choices  %}
+
+  <input type="radio" class="btn-check" name="designoptions" id="designoption{{choice}}" autocomplete="off">
+  <label class="btn btn-outline-danger" for="designoption{{choice}}">{{choice}}</label>
+
+  {% endfor %}
+  </div>
+  <div>
+    <br>
+    <p>Rate Usability</p>
+
+  {% for choice in choices  %}
+
+  <input type="radio" class="btn-check" name="usabilityoptions" id="usabilityoption{{choice}}" autocomplete="off">
+  <label class="btn btn-outline-primary" for="usabilityoption{{choice}}">{{choice}}</label>
+  
+
+  {% endfor %}
+  </div>
+
+  <div>
+    <br>
+
+    <p>Rate content</p>
+  {% for choice in choices  %}
+
+  <input type="radio" class="btn-check" name="contentoptions" id="contentoption{{choice}}" autocomplete="off">
+  <label class="btn btn-outline-secondary" for="contentoption{{choice}}">{{choice}}</label>
+  
+
+  {% endfor %}
+  </div>
+  <input type="submit" class="btn btn-danger mt-3" >
+</form>
+{% endblock %}

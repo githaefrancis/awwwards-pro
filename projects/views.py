@@ -29,3 +29,21 @@ def new_project(request):
     "form":form,
   }
   return render(request,'new_project.html',context)
+
+def single_project(request,id):
+  project=Project.objects.filter(pk=id).first()
+  
+  
+  context={
+    "project":project,
+    "choices":[1,2,3,4,5,6,7,8,9,10],
+
+  }
+
+  return render(request,'project.html',context)
+
+
+def vote(request,id):
+  
+  
+  return render(request,'vote.html')

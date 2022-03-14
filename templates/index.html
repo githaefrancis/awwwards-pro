@@ -85,7 +85,7 @@
         <p>By {{project.user.username}}</p>
         <div class="d-flex justify-content-between">
         <a href="{{project.url}}" target="_blank" class="btn btn-primary">Visit</a>
-        <a href="" target="_blank" class="btn btn-secondary">Vote</a>
+        <a href="{% url 'view_project' project.id %}" target="_blank" class="btn btn-secondary">Vote</a>
 
          </div>
       </div>
