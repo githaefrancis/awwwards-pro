@@ -1,9 +1,14 @@
 from django.shortcuts import render,redirect
 from .forms import ProjectForm
+from .models import Project
 # Create your views here.
 
 def index(request):
-  return render(request,'index.html')
+  all_projects=Project.get_all_projects()
+  context={
+    "projects":all_projects,
+  }
+  return render(request,'index.html',context)
 
 def new_project(request):
   if request.method=='POST':

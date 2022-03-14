@@ -29,10 +29,10 @@
 </header>
  
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modelId">
+<!-- <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modelId">
   
   
-</button>
+</button> -->
 
 <!-- Modal -->
 <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -67,7 +67,33 @@
   });
 </script>
 
+<div class="main container mb-5">
+<h5 class="my-3">Projects to Vote on</h5>
+<div class="row">
+  {% if projects %}
+  {% for project in projects %}
+  <div class="col-lg-3 .col-md-4 .col-sm-12">
+    <div class="card border-0">
 
+
+
+        <img src="{{project.image.url}}" class="card-img-top" alt="">
+        <div class="card-body">
+        <p>{{project.title}}</p>
+        <p>{{project.description}}</p>
+        <p>{{project.created_at}}</p>
+        <p>By {{project.user.username}}</p>
+        <a href="{{project.url}}" target="_blank" class="btn btn-primary">Visit</a>
+      </div>
+    </div>
+
+  </div>
+  {% endfor %}
+  {% endif %}
+
+</div>
+
+</div>
 
 
 {% endblock %}
