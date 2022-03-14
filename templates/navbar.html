@@ -13,7 +13,7 @@
       {% if user.is_authenticated %}
       <h5 class="nav-item"><a href="" class="text-decoration-none">{{user.username}}</a>
       {% else %}
-  <h5 class="nav-item"><a href="">REGISTER / LOG IN</a>
+  <h5 class="nav-item"><a href="/accounts/login">REGISTER / LOG IN</a>
     {% endif %}
   <a href="{% url 'create_project' %}" class="bg-dark text-white text-decoration-none py-3 my-0 px-1"> SUBMIT YOUR SITE </a></h5>
   </div>
