@@ -26,6 +26,12 @@ class Project(models.Model):
 
   def save_project(self):
     self.save()
+
+
+  @classmethod
+  def get_all_projects(cls):
+    return cls.objects.all()
+  
 class Rating(models.Model):
   user=models.ForeignKey(User,related_name='rating',on_delete=models.CASCADE)
   project=models.ForeignKey(Project,related_name='rating',on_delete=models.CASCADE)

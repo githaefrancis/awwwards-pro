@@ -31,3 +31,10 @@ class TestProject(TestCase):
     self.rating.save_rating()
     self.assertTrue(len(Rating.objects.all())>0)
 
+
+  def test_get_all_projects(self):
+    self.user.save()
+    self.project.save_project()
+    self.all_projects=Project.get_all_projects()
+    self.assertEquals(len(self.all_projects),len(Project.objects.all()))
+
