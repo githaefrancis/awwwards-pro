@@ -8,5 +8,6 @@ path('',views.index,name='home'),
 path('project/new',views.new_project,name='create_project'),
 re_path('^project/(\d+)$',views.single_project,name='view_project'),
 re_path('^project/(\d+)/vote$',views.vote,name='vote'),
+re_path('^user/profile/',views.profile,name='profile')
 
 ]

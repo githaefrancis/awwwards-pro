@@ -1,7 +1,9 @@
+
+from multiprocessing import context
 from django.http import HttpResponse,JsonResponse
 from django.shortcuts import render,redirect
-from .forms import ProjectForm
-from .models import Project,Rating
+from .forms import ProfileForm, ProjectForm
+from .models import Project,Rating,UserProfile
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -65,4 +67,21 @@ def vote(request,id):
   data={'success':'You have been successfully rated this project'}
   return JsonResponse(data)
   
+@login_required(login_url='/accounts/login')
+def profile(request):
+  current_user=request.user
 
+  form=ProfileForm()
+  profile=UserProfile.objects.filter(user=current_user).first()
+  context={
+    'form':form,
+    'profile':profile
+    }
+  if request.method=='POST':
+    form=ProfileForm(request.POST,request.FILES)
+    if form.is_valid():
+      new_profile=form.save(commit=False)
+      new_profile.user=current_user
+      new_profile.save_profile()
+      return redirect('profile')
+  return render(request,'profile.html',context)
