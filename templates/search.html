@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<div class="main container my-5">
+  <h5 class="my-5">Search results</h5>
+  <div class="row">
+    {% if projects %}
+    {% for project in projects %}
+    <div class="col-lg-3 .col-md-4 .col-sm-12">
+      <div class="card border-0">
+
+
+
+        <img src="{{project.image.url}}" class="card-img-top" alt="">
+        <div class="card-body shadow py-2">
+          <p>{{project.title}}</p>
+          <p>{{project.description}}</p>
+          <p>{{project.created_at}}</p>
+          <p>By {{project.user.username}}</p>
+          <div class="d-flex justify-content-between">
+            <a href="{{project.url}}" target="_blank" class="btn btn-primary">Visit</a>
+            <a href="{% url 'view_project' project.id %}" class="btn btn-secondary">Rate</a>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    {% endfor %}
+    {% endif %}
+
+  </div>
+
+</div>
+
+
+{% endblock %}

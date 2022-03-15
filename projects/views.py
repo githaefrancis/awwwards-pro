@@ -86,3 +86,14 @@ def profile(request):
       new_profile.save_profile()
       return redirect('profile')
   return render(request,'profile.html',context)
+
+
+def search(request):
+  if request.method=='GET':
+    searchword=request.GET.get('search')
+    results=Project.search_project(searchword)
+    context={
+      "projects":results
+    }
+
+    return render(request,'search.html',context)

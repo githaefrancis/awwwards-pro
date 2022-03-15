@@ -38,6 +38,10 @@ class Project(models.Model):
   @classmethod
   def get_all_projects_by_user(cls,user):
     return cls.objects.filter(user=user).all()
+
+  @classmethod
+  def search_project(cls,key_word):
+    return cls.objects.filter(title__icontains=key_word).all()
   
 class Rating(models.Model):
   user=models.ForeignKey(User,related_name='rating',on_delete=models.CASCADE)

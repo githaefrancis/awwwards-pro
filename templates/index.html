@@ -25,39 +25,7 @@
 </div>
 </header>
  
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modelId">
-  
-  
-</button> -->
 
-<!-- Modal -->
-<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-      
-              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-          <div class="modal-body">
-        <div class="container-fluid">
-          
-        
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-
-</script>
 
 <div class="main container mb-5">
 <h5 class="my-3">Projects to Vote on</h5>
@@ -77,7 +45,7 @@
         <p>By {{project.user.username}}</p>
         <div class="d-flex justify-content-between">
         <a href="{{project.url}}" target="_blank" class="btn btn-primary">Visit</a>
-        <a href="{% url 'view_project' project.id %}" class="btn btn-secondary">Vote</a>
+        <a href="{% url 'view_project' project.id %}" class="btn btn-secondary">Rate</a>
 
          </div>
       </div>
