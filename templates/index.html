@@ -70,14 +70,14 @@
 
 
         <img src="{{project.image.url}}" class="card-img-top" alt="">
-        <div class="card-body">
+        <div class="card-body shadow py-2">
         <p>{{project.title}}</p>
         <p>{{project.description}}</p>
         <p>{{project.created_at}}</p>
         <p>By {{project.user.username}}</p>
         <div class="d-flex justify-content-between">
         <a href="{{project.url}}" target="_blank" class="btn btn-primary">Visit</a>
-        <a href="{% url 'view_project' project.id %}" target="_blank" class="btn btn-secondary">Vote</a>
+        <a href="{% url 'view_project' project.id %}" class="btn btn-secondary">Vote</a>
 
          </div>
       </div>

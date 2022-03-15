@@ -70,12 +70,13 @@ def vote(request,id):
 @login_required(login_url='/accounts/login')
 def profile(request):
   current_user=request.user
-
+  projects=Project.get_all_projects_by_user(current_user)
   form=ProfileForm()
   profile=UserProfile.objects.filter(user=current_user).first()
   context={
     'form':form,
-    'profile':profile
+    'profile':profile,
+    'projects':projects
     }
   if request.method=='POST':
     form=ProfileForm(request.POST,request.FILES)
