@@ -1,8 +1,20 @@
 header,header .container{
   min-height: 80vh;
-  background: red;
+  background:url('https://res.cloudinary.com/dgfuzu7mt/image/upload/v1647319933/awwwards/background_cmfkiu.jpg');
+  background-size:cover;
+  
 }
 
 .auth-main{
-  background:red
+  background:url('https://res.cloudinary.com/dgfuzu7mt/image/upload/v1647319933/awwwards/background_cmfkiu.jpg');
+  background-size:cover;
+}
+
+.login-card{
+  margin-top:10rem;
+}
+
+.highlight{
+
+  background:rgba(228,233,237,0.6);
 }
