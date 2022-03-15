@@ -1,15 +1,18 @@
-{% extends 'base.html' %}
+
 
 {% block content %}
 
-<form action="" class="mt-2">
+<form class="mt-2" id="voteform" value="{{project.id}}">
+  
+  {% csrf_token %}
+  <input type="hidden" value="{{project.id}}" id="targetproject">
   <div>
     <br>
 
     <p>Rate Design</p>
   {% for choice in choices  %}
 
-  <input type="radio" class="btn-check" name="designoptions" id="designoption{{choice}}" autocomplete="off">
+  <input type="radio" class="btn-check" name="designoptions" id="designoption{{choice}}" autocomplete="off" value="{{choice}}">
   <label class="btn btn-outline-danger" for="designoption{{choice}}">{{choice}}</label>
 
   {% endfor %}
@@ -20,7 +23,7 @@
 
   {% for choice in choices  %}
 
-  <input type="radio" class="btn-check" name="usabilityoptions" id="usabilityoption{{choice}}" autocomplete="off">
+  <input type="radio" class="btn-check" name="usabilityoptions" id="usabilityoption{{choice}}" autocomplete="off" value="{{choice}}">
   <label class="btn btn-outline-primary" for="usabilityoption{{choice}}">{{choice}}</label>
   
 
@@ -33,7 +36,7 @@
     <p>Rate content</p>
   {% for choice in choices  %}
 
-  <input type="radio" class="btn-check" name="contentoptions" id="contentoption{{choice}}" autocomplete="off">
+  <input type="radio" class="btn-check" name="contentoptions" id="contentoption{{choice}}" autocomplete="off" value="{{choice}}">
   <label class="btn btn-outline-secondary" for="contentoption{{choice}}">{{choice}}</label>
   
 

@@ -1,6 +1,7 @@
+from django.http import HttpResponse,JsonResponse
 from django.shortcuts import render,redirect
 from .forms import ProjectForm
-from .models import Project
+from .models import Project,Rating
 # Create your views here.
 
 def index(request):
@@ -32,18 +33,28 @@ def new_project(request):
 
 def single_project(request,id):
   project=Project.objects.filter(pk=id).first()
-  
-  
   context={
     "project":project,
     "choices":[1,2,3,4,5,6,7,8,9,10],
 
   }
-
+  
+  
   return render(request,'project.html',context)
 
 
 def vote(request,id):
+  design_rating=request.POST.get('designoptions')
+  usability_rating=request.POST.get("usabilityoptions")
+  content_rating=request.POST.get("contentoptions")
+  current_user=request.user
+  target_project=Project.objects.filter(pk=id).first()
+
+  new_rating=Rating(design_rating=design_rating,usability_rating=usability_rating,content_rating=content_rating,user=current_user,project=target_project)
+  new_rating.save()
+  data={'success':'You have been successfully rated this project'}
+  return JsonResponse(data)
   
+
   
-  return render(request,'vote.html')
+  # return render(request,'vote.html')
