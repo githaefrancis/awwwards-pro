@@ -19,3 +19,17 @@ header,header .container{
   background:rgba(228,233,237,0.6);
 }
 
+@media only screen and (max-width:480px){
+
+  .large-screen-menu{
+    display: none;
+  }
+}
+
+@media only screen and (min-width:480px) and (max-width:768px){
+  .large-screen-menu{
+    display: none;
+  }
+
+
+}

@@ -14,13 +14,13 @@
       <span class="navbar-toggler-icon"></span>
     
     </button>
-    <span class="mx-3"> MENU</span>
+    <span class="mx-3 large-screen-menu"> MENU</span>
   </span>
 
-    <a class="navbar-brand" href="#">awwwards pro</a>
+    <a class="navbar-brand" href="{% url 'home' %}">awwwards pro</a>
     <div class="actions">
       {% if user.is_authenticated %}
-      <h5 class="nav-item">
+      <h5 class="nav-item large-screen-menu">
         <span class="nav-item dropdown">
         <a href="" class="text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">{{user.username}}</a>
 
@@ -34,9 +34,9 @@
         </ul>
       </span>
       {% else %}
-  <h5 class="nav-item"><a href="/accounts/login" class="text-decoration-none">REGISTER / LOG IN</a>
+  <h5 class="nav-item"><a href="/accounts/login" class="text-decoration-none large-screen-menu">REGISTER / LOG IN</a>
     {% endif %}
-  <a href="{% url 'create_project' %}" class="bg-dark text-white text-decoration-none py-3 my-0 px-1"> SUBMIT YOUR SITE </a></h5>
+  <a href="{% url 'create_project' %}" class="bg-dark text-white text-decoration-none py-3 my-0 px-1 large-screen-menu"> SUBMIT YOUR SITE </a></h5>
   </div>
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
@@ -48,24 +48,26 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
+          {% if not user.is_authenticated %} 
           <li class="nav-item">
-            <a class="nav-link" href="#">All Projects</a>
+            <a class="nav-link" href="/accounts/login">LOGIN/REGISTER</a>
           </li>
+          {% else %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Account
             </a>
             <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
+              <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+              <li><a class="dropdown-item" href="/accounts/logout">Logout</a></li>
               <li>
                 
             </ul>
           </li>
+          {% endif %}
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        <form action="{% url 'search' %}" >
+          <input class="form-control" type="search" placeholder="Search name of the project" aria-label="Search" name="search">
         </form>
       </div>
     </div>
