@@ -2,6 +2,8 @@ from django.http import HttpResponse,JsonResponse
 from django.shortcuts import render,redirect
 from .forms import ProjectForm
 from .models import Project,Rating
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 def index(request):
@@ -11,6 +13,7 @@ def index(request):
   }
   return render(request,'index.html',context)
 
+@login_required(login_url='/accounts/login')
 def new_project(request):
   if request.method=='POST':
     form=ProjectForm(request.POST,request.FILES)
@@ -31,6 +34,7 @@ def new_project(request):
   }
   return render(request,'new_project.html',context)
 
+@login_required(login_url='/accounts/login')
 def single_project(request,id):
   project=Project.objects.filter(pk=id).first()
   current_user=request.user
@@ -48,7 +52,7 @@ def single_project(request,id):
   
   return render(request,'project.html',context)
 
-
+@login_required(login_url='/accounts/login')
 def vote(request,id):
   design_rating=request.POST.get('designoptions')
   usability_rating=request.POST.get("usabilityoptions")
@@ -62,5 +66,3 @@ def vote(request,id):
   return JsonResponse(data)
   
 
-  
-  # return render(request,'vote.html')
