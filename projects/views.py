@@ -35,10 +35,14 @@ def single_project(request,id):
   project=Project.objects.filter(pk=id).first()
   current_user=request.user
   has_rated=Rating.check_if_user_has_rated(current_user,id)
+  average_ratings=Rating.get_average_rating(id)
   context={
     "project":project,
     "choices":[1,2,3,4,5,6,7,8,9,10],
     "has_rated":has_rated,
+    "design_score":average_ratings['design'],
+    "usability_score":average_ratings['usability'],
+    "content_score":average_ratings['content']
   }
   
   

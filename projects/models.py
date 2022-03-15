@@ -52,3 +52,12 @@ class Rating(models.Model):
 
   def save_rating(self):
     self.save()
+  @classmethod
+  def get_average_rating(cls,project_id):
+    target_project=Project.objects.filter(id=project_id).first()
+    all_ratings=Rating.objects.filter(project=target_project).all()
+  
+    design_average=sum(rating.design_rating for rating in all_ratings)/len(all_ratings)
+    usability_average=sum(rating.usability_rating for rating in all_ratings)/len(all_ratings)
+    content_average=sum(rating.content_rating for rating in all_ratings)/len(all_ratings)
+    return {'design':round(design_average,1),'usability':round(usability_average,1),'content':round(content_average,1)}
