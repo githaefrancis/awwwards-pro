@@ -19,7 +19,16 @@
     <h3 class="my-2">{{project.title}}</h3>
     <p>Description</p>
     <p>{{project.description}}</p>
-    <p> Posted on: {{project.created_at |date:"d-m-Y"}}</p>
+    <div class="d-flex justify-content-between"><p> Posted on: {{project.created_at |date:"d-m-Y"}}</p>
+      {% if not has_rated %}
+      <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#ratingModal">
+        Vote
+      </button>
+      {% else %}
+      Rated
+      {% endif %}
+    </div>
+      
   </div>
   </div>
 
@@ -27,10 +36,10 @@
 </div>
 </div>
 
-<button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#ratingModal">
+<!-- <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#ratingModal">
   
   
-</button>
+</button> -->
 
 <!-- Modal -->
 <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">

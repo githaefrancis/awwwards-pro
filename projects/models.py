@@ -27,6 +27,10 @@ class Project(models.Model):
   def save_project(self):
     self.save()
 
+  @classmethod
+  def get_project_by_id(cls,id):
+    return cls.objects.filter(pk=id).first()
+
 
   @classmethod
   def get_all_projects(cls):
@@ -39,6 +43,12 @@ class Rating(models.Model):
   usability_rating=models.IntegerField()
   content_rating=models.IntegerField()
   created_at=models.DateTimeField(auto_now_add=True)
+
+  @classmethod
+  def check_if_user_has_rated(cls,user,project_id):
+    
+    project=Project.get_project_by_id(project_id)
+    return cls.objects.filter(user=user,project=project)
 
   def save_rating(self):
     self.save()
