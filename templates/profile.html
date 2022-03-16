@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block content %}
-
+{% load static %}
   {% if not profile %}
 <div class="container d-flex mt-5 pt-5 justify-content-center">
 
@@ -22,10 +22,9 @@
 {% else %}
 <div class="container mt-5 pt-5">
 <h2 class="text-center">Profile</h2>
-<div class="mt-5 d-flex justify-content-center">
-
-  <img src="{{profile.profile_photo.url}}" class="mx-5" alt="">
-
+<div class="mt-5 d-flex justify-content-center flex-column flex-lg-row">
+  
+  <img src="{{profile.profile_photo.url}}" class="mx-5 profile-photo img-fluid" width="250" alt="">
   <div>
     <p>Name: {{profile.name}}</p>
     <p>Bio: {{profile.bio}}</p>

@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'projects',
     'django_bootstrap5',
     'cloudinary',
+    'rest_framework',
+    'api',
 ]
 
 MIDDLEWARE = [
