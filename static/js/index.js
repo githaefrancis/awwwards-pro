@@ -22,9 +22,14 @@ $('#voteform').submit((e)=>{
       'type':'POST',
       'data':form.serialize(),
       'dataType':'json',
-      'success':(data)=>{alert(data['success'])},
+      'success':(data)=>{
+        alert(data['success']);
+        location.reload()
+      
+    },
     })
     $('#ratingModal').modal('hide');
+    
    return false;
   });
 

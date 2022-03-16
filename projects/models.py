@@ -72,3 +72,8 @@ class Rating(models.Model):
       usability_average=0
       content_average=0
     return {'design':round(design_average,1),'usability':round(usability_average,1),'content':round(content_average,1)}
+
+
+  @classmethod
+  def get_ratings_for_project(cls,project_id):
+    pass
