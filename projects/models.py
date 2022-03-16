@@ -75,5 +75,8 @@ class Rating(models.Model):
 
 
   @classmethod
-  def get_ratings_for_project(cls,project_id):
-    pass
+  def get_all_ratings_for_project(cls,project_id):
+    target_project=Project.objects.filter(id=project_id).first()
+    all_ratings=Rating.objects.filter(project=target_project).order_by('-id').all()
+    return all_ratings
+    

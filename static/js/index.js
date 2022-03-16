@@ -24,7 +24,7 @@ $('#voteform').submit((e)=>{
       'dataType':'json',
       'success':(data)=>{
         alert(data['success']);
-        location.reload()
+        window.location.reload()
       
     },
     })
