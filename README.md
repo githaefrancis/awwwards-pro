@@ -4,36 +4,48 @@
 
 A django web application that allows users to rate other people's software projects.Users can also upload their personal projects and have the audience rate them.
 
+## Author
 
-# BDD
+Francis Githae
+
+## BDD
 - User views all projects posted.
 
 - User registers for an account.
 
--User logs into the account.
+- User logs into the account.
 
--User updates profile.
+- User updates profile.
 
--User uploads a project.
+- User uploads a project.
 
--User rates selected project based on design, usability and content.
+- User rates selected project based on design, usability and content.
 
--User views the average of the rating criteria per project.
+- User views the average of the rating criteria per project.
 
 
-# API endpoints
+## API endpoints
 
 The application provides two RESTFUL API endpoints:
 
-1. **api/profile**
+## 1. **Profiles endpoint**
 
--Returns all user profiles json format
-2. **api/projects**
+### Resource
+> GET /api/profile
 
--Returns all projects posted in json format
+### Description
+- Returns all user profiles json format
+
+## 2. **Projects endpoint**
+
+### Resource
+> GET /api/projects
+
+### Description
+- Returns all projects posted in json format
 
 
-# Tools and Technologies
+## Tools and Technologies
 
 - Python-Programming language
 - Django - Web app framework.
